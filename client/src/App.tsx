@@ -10,7 +10,7 @@ const About = lazy(() => import("@/pages/About"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const App: React.FC = () => (
-  <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+  <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <Router>
       <Suspense fallback={<Spinner />}>
         <Routes>
