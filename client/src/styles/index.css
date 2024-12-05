@@ -3,67 +3,95 @@
 @tailwind utilities;
 
 @layer base {
+  /* Root color variables */
   :root {
-    --background: 0 0% 100%; /* White */
+    --background: 0 0% 100%; /* Light background */
     --foreground: 224 71.4% 4.1%; /* Dark Navy */
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 224 71.4% 4.1%; /* Dark Navy */
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 224 71.4% 4.1%; /* Dark Navy */
+    --card: 0 0% 100%; /* White card */
+    --card-foreground: var(--foreground); /* Dark Navy card text */
+    --popover: 0 0% 100%; /* White popover */
+    --popover-foreground: var(--foreground); /* Dark Navy popover text */
+
+    /* Primary & Secondary Colors */
     --primary: 262.1 83.3% 57.8%; /* Lavender */
     --primary-foreground: 210 20% 98%; /* Light Grayish Blue */
     --secondary: 220 14.3% 95.9%; /* Pale Blue */
     --secondary-foreground: 220.9 39.3% 11%; /* Dark Grayish Blue */
-    --muted: 220 14.3% 95.9%; /* Pale Blue */
+
+    /* Muted and Accent Colors */
+    --muted: var(--secondary);
     --muted-foreground: 220 8.9% 46.1%; /* Grayish Blue */
-    --accent: 220 14.3% 95.9%; /* Pale Blue */
-    --accent-foreground: 220.9 39.3% 11%; /* Dark Grayish Blue */
-    --destructive: 0 84.2% 60.2%; /* Red */
-    --destructive-foreground: 210 20% 98%; /* Light Grayish Blue */
+    --accent: var(--secondary);
+    --accent-foreground: var(--secondary-foreground);
+
+    /* Border & Input Styles */
     --border: 220 13% 91%; /* Light Blue Gray */
-    --input: 220 13% 91%; /* Light Blue Gray */
-    --ring: 262.1 83.3% 57.8%; /* Lavender */
-    --radius: 0.5rem; /* Border radius */
+    --input: var(--border);
+
+    /* Destructive Color */
+    --destructive: 0 84.2% 60.2%; /* Red */
+    --destructive-foreground: var(--primary-foreground);
+
+    /* Ring & Radius */
+    --ring: var(--primary);
+    --radius: 0.5rem; /* Border radius for rounded corners */
+
+    /* Chart Colors */
     --chart-1: 12 76% 61%; /* Orange */
     --chart-2: 173 58% 39%; /* Teal */
     --chart-3: 197 37% 24%; /* Dark Cyan */
     --chart-4: 43 74% 66%; /* Gold */
     --chart-5: 27 87% 67%; /* Pale Yellow */
+
+    /* Sidebar Colors */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: var(--border);
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
+  /* Dark Mode Overrides */
   .dark {
-    --background: 224 71.4% 4.1%; /* Dark Navy */
-    --foreground: 210 20% 98%; /* Light Grayish Blue */
-    --card: 224 71.4% 4.1%; /* Dark Navy */
-    --card-foreground: 210 20% 98%; /* Light Grayish Blue */
-    --popover: 224 71.4% 4.1%; /* Dark Navy */
-    --popover-foreground: 210 20% 98%; /* Light Grayish Blue */
-    --primary: 263.4 70% 50.4%; /* Lavender */
-    --primary-foreground: 210 20% 98%; /* Light Grayish Blue */
+    --background: 224 71.4% 4.1%; /* Dark Navy background */
+    --foreground: 210 20% 98%; /* Light Grayish Blue text */
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+
+    /* Primary & Secondary Colors */
+    --primary: 263.4 70% 50.4%; /* Darker Lavender */
+    --primary-foreground: var(--foreground);
+
+    /* Dark Mode Secondary & Muted */
     --secondary: 215 27.9% 16.9%; /* Dark Grayish Blue */
-    --secondary-foreground: 210 20% 98%; /* Light Grayish Blue */
-    --muted: 215 27.9% 16.9%; /* Dark Grayish Blue */
-    --muted-foreground: 217.9 10.6% 64.9%; /* Grayish Blue */
-    --accent: 215 27.9% 16.9%; /* Dark Grayish Blue */
-    --accent-foreground: 210 20% 98%; /* Light Grayish Blue */
+    --secondary-foreground: var(--foreground);
+    --muted: var(--secondary);
+    --muted-foreground: 217.9 10.6% 64.9%; /* Darker Grayish Blue */
+
+    /* Destructive Color */
     --destructive: 0 62.8% 30.6%; /* Dark Red */
-    --destructive-foreground: 210 20% 98%; /* Light Grayish Blue */
-    --border: 215 27.9% 16.9%; /* Dark Grayish Blue */
-    --input: 215 27.9% 16.9%; /* Dark Grayish Blue */
-    --ring: 263.4 70% 50.4%; /* Lavender */
+    --destructive-foreground: var(--primary-foreground);
+
+    /* Border & Input */
+    --border: var(--secondary);
+    --input: var(--border);
+
+    /* Ring Color */
+    --ring: var(--primary);
+
+    /* Chart Colors (Updated for Dark Mode) */
     --chart-1: 220 70% 50%; /* Blue */
     --chart-2: 160 60% 45%; /* Teal */
     --chart-3: 30 80% 55%; /* Orange */
     --chart-4: 280 65% 60%; /* Purple */
     --chart-5: 340 75% 55%; /* Red */
+
+    /* Sidebar Colors (Dark Mode) */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -75,21 +103,7 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  .dark body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* Resetting margin and ensuring full height */
+/* General Resets */
 html,
 body {
   height: 100%;
@@ -98,7 +112,18 @@ body {
   box-sizing: border-box; /* More predictable layout behavior */
 }
 
-/* Ensuring #root takes up the full height */
 #root {
   height: 100%;
+}
+
+* {
+  @apply border-border; /* Border default applied to all elements */
+}
+
+body {
+  @apply bg-background text-foreground; /* Apply background and text color */
+}
+
+.dark body {
+  @apply bg-background text-foreground; /* Dark mode body colors */
 }
