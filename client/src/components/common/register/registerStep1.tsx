@@ -1,47 +1,48 @@
-import React, { useState } from "react";
-import { Input } from "@/components/ui/input"; 
+import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
-const RegisterStep1: React.FC<{ onNext: (phoneNumber: string) => void }> = ({ onNext }) => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [error, setError] = useState("");
+const RegisterStep1: React.FC<{
+  onNext: (values: { phoneNumber: string }) => void;
+}> = ({ onNext }) => {
+  const validationSchema = Yup.object({
+    phoneNumber: Yup.string()
+      .required("Phone number is required")
+      .matches(/^\d{10}$/, "Phone number must be 10 digits"),
+  });
 
-  const handleNext = () => {
-    if (!phoneNumber || !/^\d{10}$/.test(phoneNumber)) {
-      setError("Please enter a valid phone number.");
-      return;
-    }
-    setError("");
-    onNext(phoneNumber);
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    if (/^\d{0,10}$/.test(value)) {
-      setPhoneNumber(value);
-    }
-  };
+  const formik = useFormik({
+    initialValues: { phoneNumber: "" },
+    validationSchema,
+    onSubmit: (values) => {
+      onNext(values);
+    },
+  });
 
   return (
-    <div className="w-full max-w-md mx-auto p-8 bg-card shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-foreground">Register with Mobile</h2>
-      <form>
+    <div className="p-8 bg-card shadow-md rounded-lg">
+      <h2 className="text-2xl font-bold mb-8">Register with Mobile</h2>
+      <form onSubmit={formik.handleSubmit}>
         <div className="mb-4">
-          <Label htmlFor="phone" className="text-muted-foreground">Phone Number</Label>
+          <Label htmlFor="phone">Phone Number</Label>
           <Input
-            type="tel"
-            id="phone"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
-            placeholder="Enter your phone number"
             className="mt-2"
-            required
+            id="phone"
+            type="tel"
+            {...formik.getFieldProps("phoneNumber")}
+            placeholder="Enter your phone number"
+            maxLength={10}
           />
-          {error && <p className="text-destructive text-sm mt-1">{error}</p>}
+          {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+            <p className="text-destructive text-sm">
+              {formik.errors.phoneNumber}
+            </p>
+          )}
         </div>
-        <Button onClick={handleNext} className="w-full mt-4" variant="cartoon">
+        <Button type="submit" className="w-full mt-4" variant="cartoon">
           Send OTP
         </Button>
       </form>
