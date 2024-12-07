@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "@/components/common/navbar";
+import Navbar from "@/components/common/navigation/navbar";
+import AccNav from "../common/navigation/accNav";
 import SearchBar from "@/components/common/searchBar";
-import { User, ShoppingCart, Menu, X } from "lucide-react";
+import { ShoppingCart, Menu, X } from "lucide-react";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,16 +28,15 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-6">
               <Link
                 to="/account"
-                className="flex items-center space-x-2 text-foreground hover:text-foreground/90 transition-colors"
+                className="flex items-center text-foreground hover:text-foreground/90 transition-colors"
               >
-                <User size={24} />
-                <span>Account</span>
+                <AccNav />
               </Link>
               <Link
                 to="/cart"
-                className="flex items-center space-x-2 text-foreground hover:text-foreground/90 transition-colors"
+                className="flex items-center text-foreground hover:text-foreground/90 transition-colors"
               >
-                <ShoppingCart size={24} />
+                <ShoppingCart size={24} className="mr-2" />
                 <span className="hidden lg:flex">Cart</span>
               </Link>
             </div>

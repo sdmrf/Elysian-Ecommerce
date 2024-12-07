@@ -9,7 +9,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-import SearchBar from "./searchBar";
+import SearchBar from "@/components/common/searchBar";
 
 const navItems = [
   {
