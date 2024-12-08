@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CartItem from "@/components/common/cart/cartItem";
 import CartSummary from "@/components/common/cart/cartSummary";
 
-const ViewCart: React.FC = () => {
+const Cart: React.FC = () => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -98,4 +98,4 @@ const ViewCart: React.FC = () => {
   );
 };
 
-export default ViewCart;
+export default Cart;

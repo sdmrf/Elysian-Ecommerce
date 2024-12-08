@@ -3,22 +3,19 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/common/navigation/navbar";
 import AccNav from "../common/navigation/accNav";
 import SearchBar from "@/components/common/searchBar";
-import { ShoppingCart, Menu, X } from "lucide-react";
+import MenuDropdown from "@/components/common/menuDropdown";
+import { ModeToggle } from "@/components/common/modeToggle";
+import { ShoppingCart} from "lucide-react";
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <header className="bg-background shadow-cartoon rounded-sm m-2">
         <div className="container mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="block md:hidden text-foreground"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            <div className="block md:hidden">
+              <MenuDropdown />
+            </div>
             <Link to="/" className="text-primary font-bold text-xl">
               ELYSIAN
             </Link>
@@ -26,6 +23,9 @@ const Header: React.FC = () => {
               <SearchBar />
             </div>
             <div className="flex items-center space-x-6">
+              <div className="hidden md:flex">
+                <ModeToggle />
+              </div>
               <Link
                 to="/account"
                 className="flex items-center text-foreground hover:text-foreground/90 transition-colors"
