@@ -4,10 +4,9 @@ import * as Yup from "yup";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { RegisterStep3Props } from "@/types"; 
 
-const RegisterStep3: React.FC<{
-  onComplete: (values: { name: string; email: string; password: string }) => void;
-}> = ({ onComplete }) => {
+const RegisterStep3: React.FC<RegisterStep3Props> = ({ onComplete }) => {
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -28,8 +27,7 @@ const RegisterStep3: React.FC<{
     },
     validationSchema,
     onSubmit: (values) => {
-      const { confirmPassword, ...formValues } = values;
-      onComplete(formValues);
+      onComplete(values);
     },
   });
 
@@ -82,7 +80,6 @@ const RegisterStep3: React.FC<{
           Complete Registration
         </Button>
       </form>
-      
     </div>
   );
 };

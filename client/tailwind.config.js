@@ -4,6 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        aquire: ["Aquire", "sans-serif"],
+      },
       border: {
         cartoon: "2px solid hsl(var(--background))",
         "cartoon-reverse": "2px solid hsl(var(--background))",

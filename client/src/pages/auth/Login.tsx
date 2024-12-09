@@ -1,10 +1,13 @@
 import React from "react";
-import { useFormik } from "formik";
+import { useFormik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import axios from "axios";
+
+import { LoginFormValues, LoginResponse } from "@/types";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email format").required("Email is required"),
@@ -14,21 +17,26 @@ const validationSchema = Yup.object({
 });
 
 const Login: React.FC = () => {
-  const formik = useFormik({
+  const formik = useFormik<LoginFormValues>({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      if (values.email === "user@example.com" && values.password === "password123") {
-        toast.success("Login successful!", {
-          richColors: true,
-        });
-      } else {
-        toast.error("Invalid credentials", {
-          richColors: true,
-        });
+    onSubmit: async (
+      values: LoginFormValues,
+      { setSubmitting }: FormikHelpers<LoginFormValues>
+    ) => {
+      try {
+        const response = await axios.post<LoginResponse>("/api/login", values);
+
+        if (response.status === 200) {
+          toast.success("Login successful!", { richColors: true });
+        }
+      } catch (error) {
+        toast.error("Invalid credentials", { richColors: true });
+      } finally {
+        setSubmitting(false);
       }
     },
   });
@@ -68,7 +76,7 @@ const Login: React.FC = () => {
               <p className="text-destructive text-sm mt-2">{formik.errors.password}</p>
             )}
           </div>
-          <Button type="submit" className="w-full mt-4" variant="cartoon">
+          <Button type="submit" className="w-full mt-4" variant="cartoon" disabled={formik.isSubmitting}>
             Login
           </Button>
         </form>

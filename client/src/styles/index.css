@@ -117,6 +117,14 @@
   }
 }
 
+@font-face {
+  font-family: 'Aquire';
+  src: url('../assets/fonts/Aquire-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
 /* General Resets */
 html,
 body {

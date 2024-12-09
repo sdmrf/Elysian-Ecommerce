@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/common/navigation/navbar";
 import AccNav from "../common/navigation/accNav";
 import SearchBar from "@/components/common/searchBar";
 import MenuDropdown from "@/components/common/menuDropdown";
 import { ModeToggle } from "@/components/common/modeToggle";
-import { ShoppingCart} from "lucide-react";
+import { ShoppingCart } from "lucide-react";
+
+const cartItemCount = 5;
 
 const Header: React.FC = () => {
   return (
@@ -16,7 +18,7 @@ const Header: React.FC = () => {
             <div className="block md:hidden">
               <MenuDropdown />
             </div>
-            <Link to="/" className="text-primary font-bold text-xl">
+            <Link to="/" className="text-primary font-aquire text-xl md:text-2xl">
               ELYSIAN
             </Link>
             <div className="hidden md:block">
@@ -34,9 +36,14 @@ const Header: React.FC = () => {
               </Link>
               <Link
                 to="/cart"
-                className="flex items-center text-foreground hover:text-foreground/90 transition-colors"
+                className="relative flex items-center text-foreground hover:text-foreground/90 transition-colors"
               >
                 <ShoppingCart size={24} className="mr-2" />
+                {cartItemCount > 0 && (
+                  <span className="absolute bottom-3 left-2 bg-primary text-background text-xs font-bold rounded-full px-2 py-1">
+                    {cartItemCount}
+                  </span>
+                )}
                 <span className="hidden lg:flex">Cart</span>
               </Link>
             </div>

@@ -4,8 +4,9 @@ import * as Yup from "yup";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import OtpInput from "../otpInput";
+import { RegisterStep2Props } from "@/types";
 
-const RegisterStep2: React.FC<{ onNext: (values: { otp: string }) => void }> = ({ onNext }) => {
+const RegisterStep2: React.FC<RegisterStep2Props> = ({ onNext }) => {
   const validationSchema = Yup.object({
     otp: Yup.string()
       .required("OTP is required")
@@ -30,10 +31,10 @@ const RegisterStep2: React.FC<{ onNext: (values: { otp: string }) => void }> = (
         <div className="mb-4">
           <Label htmlFor="otp">OTP</Label>
           <div className="flex justify-center items-center">
-          <OtpInput
-            otpValue={formik.values.otp}
-            setOtpValue={(value) => formik.setFieldValue("otp", value)}
-          />
+            <OtpInput
+              otpValue={formik.values.otp}
+              setOtpValue={(value) => formik.setFieldValue("otp", value)}
+            />
           </div>
           {formik.touched.otp && formik.errors.otp && (
             <p className="text-destructive text-sm">{formik.errors.otp}</p>

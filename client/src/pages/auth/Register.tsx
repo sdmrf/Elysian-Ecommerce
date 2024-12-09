@@ -3,10 +3,11 @@ import RegisterStep1 from "@/components/common/register/registerStep1";
 import RegisterStep2 from "@/components/common/register/registerStep2";
 import RegisterStep3 from "@/components/common/register/registerStep3";
 import { toast } from "sonner";
+import { CompleteRegisterFormValues } from "@/types";
 
 const Register: React.FC = () => {
   const [step, setStep] = useState(1);
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<CompleteRegisterFormValues>({
     phoneNumber: "",
     otp: "",
     name: "",
